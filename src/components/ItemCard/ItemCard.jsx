@@ -12,7 +12,7 @@ export default function ItemCard({ description, id, image_url, name, price }) {
             <p className="card-text">{description}</p>
         </div>
         <div className="card-footer">
-          <Link to={`/item/${id}`}>
+          <Link to={`/PreEntrega2-Zosi/item/${id}`}>
             <button className="btn btn-primary">Detalle</button>
           </Link>
         </div>

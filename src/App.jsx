@@ -11,11 +11,11 @@ export default function App() {
     <BrowserRouter>
       <NavBar brand="ZetaEle" />
       <Routes>
-        <Route path="/" element={ <ItemListContainer greeting="Hola, usuario." />} />
-        <Route path="/category/:categoryId" element={ <ItemListContainer />} /> 
-        <Route path="/item/:itemId" element={ <ItemDetailContainer /> } />
+        <Route path="/PreEntrega2-Zosi/" element={ <ItemListContainer greeting="Hola, usuario." />} />
+        <Route path="/PreEntrega2-Zosi/category/:categoryId" element={ <ItemListContainer />} /> 
+        <Route path="/PreEntrega2-Zosi/item/:itemId" element={ <ItemDetailContainer /> } />
 
-        <Route path="*" element={ <NotFound /> } />
+        <Route path="/PreEntrega2-Zosi/*" element={ <NotFound /> } />
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -27,7 +27,7 @@ export default function NavBar({ brand }) {
         <header>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container">
-                    <Link to='/' className="navbar-brand">
+                    <Link to="/PreEntrega2-Zosi/" className="navbar-brand">
                         <span>{brand}</span>
                     </Link>
                     <div id="navbarNav">
@@ -35,7 +35,7 @@ export default function NavBar({ brand }) {
                             {
                                 nav.map((item) =>
                                     <li key={ item.text } className="nav-item">
-                                        <NavLink className={({isActive}) => isActive ? 'active nav-link' : 'nav-link'} to={`/category/${item.category_id}`}>
+                                        <NavLink className={({isActive}) => isActive ? 'active nav-link' : 'nav-link'} to={`/PreEntrega2-Zosi/category/${item.category_id}`}>
                                             {item.text}
                                         </NavLink>
                                     </li>
