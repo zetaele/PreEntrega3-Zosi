@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function ItemCard({ description, id, image_url, name, price }) {
+  
   return (
     <div className="col">
       <div className="card h-100">
