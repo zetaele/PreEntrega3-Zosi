@@ -113,19 +113,19 @@ const products = [
  * @param {string} type
  * @returns Promise
  */
-export const gFetch = (id = -1, type = '') => new Promise((resolve, reject) => {
+export const gFetch = (id, type = '') => new Promise((resolve, reject) => {
   setTimeout(() => {
     try {
       if (!products) {
         return reject(new Error('The products object is not defined'));
       }
       let result;
-      if (id !== -1 && type === 'item') {
+      if (id && type === 'item') {
         result = products.find(item => item.id === id);
         if (!result) {
           throw new Error(`No product found for id: ${id}`);
         }
-      } else if (id !== -1 && type === 'category') {
+      } else if (id && type === 'category') {
         result = products.filter(item => item.category_id === id);
         if (!result.length) {
           throw new Error(`No products found for category: ${id}`);

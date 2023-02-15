@@ -7,7 +7,7 @@ import ItemCardDetail from '../ItemCardDetail/ItemCardDetail';
 import Spinner from '../Spinner/Spinner';
 
 export default function ItemDetailContainer() {
-  const { itemId = -1 } = useParams();
+  const { itemId } = useParams();
   const [item, setItem] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   
