@@ -1,9 +1,9 @@
 {
-  "name": "preentrega2-zosi",
+  "name": "preentrega3-zosi",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://zetaele.github.io/PreEntrega2-Zosi/",
+  "homepage": "https://zetaele.github.io/PreEntrega3-Zosi/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

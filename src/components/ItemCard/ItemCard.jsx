@@ -14,7 +14,7 @@ export default function ItemCard({ description, id, image_url, name, price, stoc
             <p className="card-text">Stock: {stock}</p>
         </div>
         <div className="card-footer">
-          <Link to={`/PreEntrega2-Zosi/item/${id}`}>
+          <Link to={`/PreEntrega3-Zosi/item/${id}`}>
             <button className="btn btn-primary">Detalle</button>
           </Link>
         </div>
