@@ -27,15 +27,15 @@ export default function ItemDetailContainer() {
 
   return (
     <div className="container custom-container">
-    <ToastContainer />
-      {
-        !isLoading && Object.keys(item).length > 0 && (
-          <ItemCardDetail key={item.id} {...item} />
-        )
-      }
-      {
-        isLoading && <Spinner />
-      }
-  </div>
+      <ToastContainer />
+        {
+          !isLoading && Object.keys(item).length > 0 && (
+            <ItemCardDetail key={item.id} {...item} />
+          )
+        }
+        {
+          isLoading && <Spinner />
+        }
+    </div>
   )
 }

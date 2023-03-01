@@ -6,7 +6,7 @@ import App from './App';
 import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import { initFirestore } from './components/firebase/config';
+import { initFirestore } from './firebase/config';
 
 initFirestore();
 
