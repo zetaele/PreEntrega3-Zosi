@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-import ItemCount from '../ItemCount/ItemCount'
-import './ItemCardDetail.css'
+import { useCartContext } from '../../context/CartContext';
+import ItemCount from '../ItemCount/ItemCount';
+import './ItemCardDetail.css';
 
 export default function ItemCardDetail({ description, id, image_url, name, price, stock }) {
+  const { addToCart } = useCartContext();
+  
+  function onAdd(qty) {
+    addToCart({ id, description, image_url, name, price, stock }, qty);
+  }
   return (
     <div className="card item-card-detail">
       <img src={image_url} className="card-img-top" alt={name} />
@@ -14,7 +20,7 @@ export default function ItemCardDetail({ description, id, image_url, name, price
         <p className="card-text">Stock: {stock}</p>
       </div>
       <div className="card-footer">
-        <ItemCount stock={stock}/>
+        <ItemCount stock={stock} onAdd={onAdd} />
       </div>
     </div>
   )

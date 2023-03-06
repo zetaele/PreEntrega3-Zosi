@@ -1,8 +1,8 @@
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { gFetch } from '../../utils/gFetch';
 import ItemCard from '../ItemCard/ItemCard';
 import Spinner from '../Spinner/Spinner';
 
@@ -10,20 +10,28 @@ export default function ItemListContainer({greeting = ''}) {
     const { categoryId } = useParams();
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const db = getFirestore();
 
     useEffect(() => {
         setProducts([]);
         setIsLoading(true);
-        gFetch(parseInt(categoryId), 'category')
-          .then((response) => { 
-            setProducts(response)
-          })
-          .catch((error) => {
-            console.error(error);
-            toast.error("Ocurrió un error al buscar los productos.");
-          })
-          .finally(() => setIsLoading(false));
-      }, [categoryId]);
+        const queryCollection = collection(db, 'Products');
+        let q = '';
+        if (categoryId) {
+            q = query(queryCollection, where('category_id', '==', categoryId));
+        } else {
+            q = queryCollection;
+        }
+
+        getDocs(q).then(response => {
+            setProducts(
+                response.docs.map(
+                    doc => ({ id: doc.id, ...doc.data() })
+                )
+            );
+            setIsLoading(false);
+        })
+      }, [categoryId, db]);
 
     return (
         <div className="container custom-container">

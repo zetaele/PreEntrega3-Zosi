@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-export default function ItemCount({stock}) {
-    const [count, setCount] = useState(stock ? 1: 0);
+export default function ItemCount({ stock, onAdd }) {
+    const [count, setCount] = useState(stock ? 1 : 0);
     
     function handleAdd() {
         if (count < stock) {
@@ -16,9 +16,14 @@ export default function ItemCount({stock}) {
     }
     return (
         <>
-            <button type="button" className="btn btn-primary" disabled={!stock}onClick={handleRemove}>-</button>
-            <input type="number" className="text-center" disabled value={count}/>
-            <button type="button" className="btn btn-primary" disabled={!stock} onClick={handleAdd}>+</button>
+            <div>
+                <button type="button" className="btn btn-primary" disabled={!stock} onClick={handleRemove}>-</button>
+                <input type="number" className="text-center" disabled value={count} />
+                <button type="button" className="btn btn-primary" disabled={!stock} onClick={handleAdd}>+</button>
+            </div>
+            <div>
+                <button type="button" className="btn btn-primary" onClick={() => onAdd(count)}>Agregar al carrito</button>
+            </div>
         </>
     )
 }
