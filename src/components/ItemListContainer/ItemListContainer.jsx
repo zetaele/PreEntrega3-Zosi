@@ -1,12 +1,14 @@
-import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import ItemCard from '../ItemCard/ItemCard';
+import { ToastContainer, toast } from 'react-toastify';
+
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
+import ItemList from '../ItemList/ItemList';
 import Spinner from '../Spinner/Spinner';
 
-export default function ItemListContainer({greeting = ''}) {
+import 'react-toastify/dist/ReactToastify.css';
+
+const ItemListContainer = ({ greeting = '' }) => {
     const { categoryId } = useParams();
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -15,23 +17,27 @@ export default function ItemListContainer({greeting = ''}) {
     useEffect(() => {
         setProducts([]);
         setIsLoading(true);
-        const queryCollection = collection(db, 'Products');
-        let q = '';
-        if (categoryId) {
-            q = query(queryCollection, where('category_id', '==', categoryId));
-        } else {
-            q = queryCollection;
-        }
+        const queryCollection = 
+            categoryId ? query(collection(db, 'Products'), where('category_id', '==', categoryId)) : collection(db, 'Products');
+    
+        getDocs(queryCollection)
+            .then((response) => {
+                if (response.empty) {
+                    throw Error("No existen productos para la categoría indicada.");
+                }
+                setProducts(
+                    response.docs.map(
+                        doc => ({ id: doc.id, ...doc.data() })
+                    )
+                );
+            })
+            .catch((error) => {
+                console.error(error);
+                toast.error("Ocurrió un error al buscar productos.");
+            })
+            .finally(() => setIsLoading(false));
 
-        getDocs(q).then(response => {
-            setProducts(
-                response.docs.map(
-                    doc => ({ id: doc.id, ...doc.data() })
-                )
-            );
-            setIsLoading(false);
-        })
-      }, [categoryId, db]);
+      }, [categoryId]);
 
     return (
         <div className="container custom-container">
@@ -42,18 +48,14 @@ export default function ItemListContainer({greeting = ''}) {
                         <Spinner />
                     : 
                     (
-                    <>
-                        <h2>{greeting}</h2>
-                        <div className="row row-cols-1 row-cols-md-3 g-4">
-                            {
-                                products.map((p, i) => 
-                                    <ItemCard key={p.id} {...p} />
-                                )
-                            }
-                        </div>
-                    </>
+                        <>
+                            <h2>{greeting}</h2>
+                            <ItemList products={products}></ItemList>
+                        </>
                     )
             }      
         </div>
     );
 }
+
+export default ItemListContainer;
