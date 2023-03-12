@@ -3,7 +3,13 @@ import { useCartContext } from '../../context/CartContext';
 
 import ItemCount from '../ItemCount/ItemCount';
 
-
+/**
+ * Renders the details of a given item, including its image, name, description, price, and stock.
+ * Allows the user to add the item to their cart if it is in stock.
+ * 
+ * @param {Object} item - The item to be displayed.
+ * @returns {JSX.Element} - The JSX code for the ItemDetail component.
+ */
 const ItemDetail = ({ item }) => {
     const { addToCart } = useCartContext();
     

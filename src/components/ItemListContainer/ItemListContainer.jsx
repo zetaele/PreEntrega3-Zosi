@@ -8,6 +8,11 @@ import Spinner from '../Spinner/Spinner';
 
 import 'react-toastify/dist/ReactToastify.css';
 
+/**
+ * Component that displays a list of products from a certain category.
+ * @param {string} greeting - Optional greeting message to display above the list of products.
+ * @returns {JSX.Element} JSX element representing the ItemListContainer component.
+ */
 const ItemListContainer = ({ greeting = '' }) => {
     const { categoryId } = useParams();
     const [products, setProducts] = useState([]);
@@ -17,9 +22,12 @@ const ItemListContainer = ({ greeting = '' }) => {
     useEffect(() => {
         setProducts([]);
         setIsLoading(true);
+
+        // Construct Firestore query based on whether a category ID was passed in as a URL parameter.
         const queryCollection = 
             categoryId ? query(collection(db, 'Products'), where('category_id', '==', categoryId)) : collection(db, 'Products');
-    
+        
+        // Retrieve products from Firestore and update state accordingly.
         getDocs(queryCollection)
             .then((response) => {
                 if (response.empty) {

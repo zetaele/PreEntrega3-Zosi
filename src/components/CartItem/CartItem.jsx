@@ -1,6 +1,11 @@
 import React from 'react'
 import { useCartContext } from '../../context/CartContext';
 
+/**
+ * A component that displays information about a single item in the cart.
+ * @param {Object} item - An object containing information about the item (id, name, price, quantity, image_url).
+ * @returns {JSX.Element} A React element representing the cart item.
+ */
 const CartItem = ({ item }) => {
     const { removeItem } = useCartContext();
 

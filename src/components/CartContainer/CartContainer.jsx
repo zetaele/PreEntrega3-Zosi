@@ -4,9 +4,17 @@ import { useCartContext } from '../../context/CartContext';
 import CartItem from '../CartItem/CartItem';
 import OrderForm from '../OrderForm/OrderForm';
 
+/**
+ * Renders the shopping cart container with cart items and order form.
+ * @returns {JSX.Element} The shopping cart container component
+ */
 const CartContainer = () => {
     const { cartList, clearCart, getItemsPrice, getOrderId } = useCartContext();
     
+    /**
+     * Checks if the cart is empty.
+     * @returns {boolean} True if the cart is empty, false otherwise.
+     */
     const isCartEmpty = () => {
         return cartList.length == 0;
     }

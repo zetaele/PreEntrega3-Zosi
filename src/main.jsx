@@ -12,8 +12,4 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 
 initFirestore();
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
-    <App />
-  // </React.StrictMode>
-)
+ReactDOM.createRoot(document.getElementById('root')).render(<App />)

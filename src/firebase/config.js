@@ -1,19 +1,17 @@
-// Import the functions you need from the SDKs you need
+/**
+ * Initializes a Firebase app using the configuration variables stored in the environment.
+ * @return {FirebaseApp} The initialized Firebase app.
+ */
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyB-PFQo6Myqk3wA0Cm3Hwijouu6kYIfW0M",
-  authDomain: "coderhouse-zetaele.firebaseapp.com",
-  projectId: "coderhouse-zetaele",
-  storageBucket: "coderhouse-zetaele.appspot.com",
-  messagingSenderId: "938756272039",
-  appId: "1:938756272039:web:cced1c3b6752837a4f9082"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp({
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+});
 
 export const initFirestore = () => app;
