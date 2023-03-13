@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/CartContext';
 
 import CartItem from '../CartItem/CartItem';
@@ -30,6 +31,9 @@ const CartContainer = () => {
                                     <div className="alert alert-success" role="alert">
                                         <p>Gracias por su compra</p>
                                         <p>Número: <b>{getOrderId()}</b></p>
+                                        <Link to='/' type="button" className="btn btn-primary m-2">
+                                            Continuar Comprando
+                                        </Link>
                                     </div>
                                 :
                                     <div className="alert alert-warning" role="alert">
